@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='project_styles.css') }}">
+</head>
+<body>
+
+<div class="dashboard">
+  <div class="sidebar">
+    <h2>EcoNudge</h2>
+    <button onclick="showSection('upload')">Upload Image</button>
+    <button onclick="showSection('challenges')">Challenges</button>
+    <button onclick="showSection('rewards')">Rewards</button>
+  </div>
+
+  <div class="content">
+
+    <!-- Upload -->
+    <div id="upload" class="section active">
+      <h2>Upload Contribution 🌱</h2>
+
+      <form id="uploadForm">
+        <input type="file" id="imageInput" name="image" accept="image/*" required>
+        <br><br>
+        <button type="submit" class="btn">Predict Waste Type</button>
+      </form>
+
+      <div id="imagePreview" style="margin-top:20px; display:none;">
+        <img id="uploadedImage" src="" alt="Uploaded Image" style="max-width:300px; max-height:300px; border-radius:8px;">
+      </div>
+
+      <h3 id="result" style="margin-top:20px;"></h3>
+      <div id="recommendations" style="margin-top:16px; display:none;">
+        <!-- Recommendations will be injected here after detection -->
+      </div>
+    </div>
+    <!-- Challenges -->
+    <div id="challenges" class="section">
+      <h2>Eco Challenges 🏆</h2>
+
+      <div class="card">
+        <img src="https://via.placeholder.com/200x150/FF6B6B/FFFFFF?text=Plastic+Waste" alt="Plastic Waste" style="width:100%; height:150px; object-fit:cover; border-radius:8px;">
+        <p>Recycle Plastic</p>
+        <span>+10 Points</span><br>
+        <form id="challengeForm1" class="challenge-form">
+          <input type="file" class="challengeInput" accept="image/*" required>
+          <button type="submit" class="btn" style="width:100%; margin-top:10px;">Submit & Verify</button>
+        </form>
+        <div class="challengePreview" style="display:none; margin-top:10px;">
+          <img src="" alt="Challenge Image" style="max-width:200px; max-height:200px; border-radius:8px;">
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://via.placeholder.com/200x150/4ECDC4/FFFFFF?text=Paper+Bag" alt="Paper Bag" style="width:100%; height:150px; object-fit:cover; border-radius:8px;">
+        <p>Use Cloth Bag</p>
+        <span>+5 Points</span><br>
+        <form id="challengeForm2" class="challenge-form">
+          <input type="file" class="challengeInput" accept="image/*" required>
+          <button type="submit" class="btn" style="width:100%; margin-top:10px;">Submit & Verify</button>
+        </form>
+        <div class="challengePreview" style="display:none; margin-top:10px;">
+          <img src="" alt="Challenge Image" style="max-width:200px; max-height:200px; border-radius:8px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Rewards -->
+    <div id="rewards" class="section">
+      <h2>Your Rewards 🎁</h2>
+      <h1 id="points">0</h1>
+      
+      <div style="margin-top: 30px; background: #f0f0f0; padding: 20px; border-radius: 8px;">
+        <h3>Challenge Completions</h3>
+        <p><strong>♻️ Recycle Plastic:</strong> <span id="plasticCount">0</span> times (10 pts each)</p>
+        <p><strong>🛍️ Use Cloth Bag:</strong> <span id="clothCount">0</span> times (5 pts each)</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='scriptpj.js') }}"></script>
+</body>
+</html>

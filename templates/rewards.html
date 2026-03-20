@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Rewards</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='project_styles.css') }}">
+  <style>
+    .rewards-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .points-display {
+      font-size: 72px;
+      font-weight: bold;
+      margin: 30px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .reward-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border-left: 4px solid #4FCE5D;
+    }
+    
+    .back-btn {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: white;
+      color: #667eea;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="rewards-container">
+  <h1>🎁 Your Rewards 🎁</h1>
+  
+  <div class="points-display" id="totalPoints">0</div>
+  <p style="font-size: 24px; margin-bottom: 30px;">Points Earned</p>
+  
+  <div id="rewardsList">
+    <div class="reward-item">
+      <strong>🔄 Recycle Plastic Challenge</strong>
+      <p>+10 Points each</p>
+    </div>
+    
+    <div class="reward-item">
+      <strong>🛍️ Use Cloth Bag Challenge</strong>
+      <p>+5 Points each</p>
+    </div>
+  </div>
+  
+  <button class="back-btn" onclick="history.back()">← Back to Dashboard</button>
+</div>
+
+<script>
+  // Compute total from individual completion counters to avoid drift
+  const plasticCount = parseInt(localStorage.getItem('plastic_completions') || '0', 10);
+  const clothCount = parseInt(localStorage.getItem('cloth_completions') || '0', 10);
+  const totalPoints = (plasticCount * 10) + (clothCount * 5);
+  document.getElementById('totalPoints').innerText = totalPoints;
+  // Keep ecoPoints in sync
+  localStorage.setItem('ecoPoints', totalPoints);
+</script>
+
+</body>
+</html>
